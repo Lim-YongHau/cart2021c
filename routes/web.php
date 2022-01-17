@@ -56,6 +56,8 @@ Route::get('/deleteProduct/{id}', [App\Http\Controllers\ProductController::class
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'viewProduct']) 
 ->name('product');
 
+Route::post('/product', [App\Http\Controllers\ProductController::class, 'searchProduct']) 
+->name('search.products');
 
 Route::get('/productDetail/{id}', [App\Http\Controllers\ProductController::class, 'productdetail']) 
 ->name('product.detail');
@@ -67,8 +69,21 @@ Route::post('addCart',[App\Http\Controllers\CartController::class,'add'])
 Route::get('/myCart',[App\Http\Controllers\CartController::class, 'view'])
 ->name('myCart');
 
-Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])
+Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])
 ->name('payment.post');
+
+Route::get('/myOrder', [App\Http\Controllers\OrderController::class, 'view'])
+->name('myOrder');
+
+Route::get('/pdfReport', [App\Http\Controllers\OrderController::class, 'pdfReport'])
+->name('pdfReport');
+
+
+Route::get('/phone', [App\Http\Controllers\ProductController::class, 'phone']) 
+->name('phone');
+
+Route::get('/computer', [App\Http\Controllers\ProductController::class, 'computer']) 
+->name('computer');
 
 Auth::routes();
 

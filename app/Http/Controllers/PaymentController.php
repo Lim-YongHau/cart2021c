@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\myOrder;
 use App\Models\MyCart;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
 
 class PaymentController extends Controller
 {
@@ -39,6 +40,10 @@ class PaymentController extends Controller
             $carts->orderID=$orderID->id;  //binding the orderId value with record
             $carts->save();
         }
+
+        $email="limyonghau@gmail.com";
+        Notification::route('mail',$email)->notify(new \App\Notifications\orderPaid($email));
+        
            
         return back();
     }

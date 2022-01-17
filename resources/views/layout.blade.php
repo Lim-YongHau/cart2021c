@@ -31,28 +31,40 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Products</a>
+        <a class="nav-link" href="{{route('product')}}">Products</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Category
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Phone</a>
-          <a class="dropdown-item" href="#">Desktops/Laptop</a>
+          <a class="dropdown-item" href="{{route('phone')}}">Phone</a>
+          <a class="dropdown-item" href="{{route('computer')}}">Desktops/Laptop</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Computer Hardware</a>
         </div>
       </li>      
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="" method="POST">
+    <form class="form-inline my-2 my-lg-0" action="{{route('search.products')}}" method="POST">
       @csrf
       <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>&nbsp;
+    @guest
+
     <button type="button" class="btn btn-success">
-      My Cart <span class="badge bg-danger">1</span>
+      My Cart
     </button>
+    @else
+
+    <button type="button" class="btn btn-success">
+      My Cart <span class="badge bg-danger">
+        {{Session()->get('cartItem')}}
+      </span>
+    </button>
+    
+    @endguest
+    
   </div>
 </nav>
 

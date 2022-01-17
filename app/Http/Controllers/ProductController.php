@@ -83,7 +83,7 @@ class ProductController extends Controller
 
     public function viewProduct(){
 
-        
+        (new CartController)->cartItem();
         $products=Product::paginate(3);
         return view('viewProducts')->with('products',$products);
 
@@ -93,5 +93,22 @@ class ProductController extends Controller
     public function productdetail($id){
         $products=Product::all()->where('id',$id);
         return view('productDetail')->with('products',$products);
+    }
+
+    public function searchProduct(){
+        $r=request();
+        $keyword=$r->keyword;
+        $products=DB::table('products')->where('name','like','%'.$keyword.'%')->paginate();
+        return view('viewProducts')->with('products',$products);
+    }
+
+    public function phone(){
+        $products=DB::table('products')->where('CategoryID','=','1')->paginate();
+        return view('viewProducts')->with('products',$products);
+    }
+
+    public function computer(){
+        $products=DB::table('products')->where('CategoryID','=','2')->orWhere('CategoryID','=','3')->paginate();
+        return view('viewProducts')->with('products',$products);
     }
 }

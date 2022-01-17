@@ -25,8 +25,12 @@
         
     </div>
 
-    {{ $products->links() }}
-   
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="co1-sm-4">{{$products->links('pagination::bootstrap-4')}}</div>
+        <div class="col-md-3"></div>
+    </div>
+    
 
     
 </div>

@@ -52,6 +52,7 @@ class CartController extends Controller
 
     }
 
+    
     public function cartItem(){
         $cartItem=0;
         $noItem=DB::table('my_carts')
